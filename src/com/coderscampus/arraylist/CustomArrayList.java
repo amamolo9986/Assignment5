@@ -17,9 +17,9 @@ public class CustomArrayList<T> implements CustomList<T> {
 	public String toString() {
 		String something = ""; // we're returning a string so we have to create a string
 		for (int i = 0; i < size; i++) {
-			something = something + originalArray[i] + ", "; // String = previous + current (but we need to truncate) "something =+"
+			something = something + originalArray[i] + ", "; // String = previous + current -> different syntax "something =+" (but we need to truncate) 
 		}
-		something = something.substring(0, something.length() - 2); // removing the last two characters - comma and space
+		something = something.substring(0, something.length() - 2); // removing the last two characters -> comma and space
 		return something;
 	}
 
@@ -27,7 +27,7 @@ public class CustomArrayList<T> implements CustomList<T> {
 	public boolean add(T item) {
 		for (Object element : originalArray) { // loops every time our array hits capacity
 			if (size == initialCapacity) { // if the size of the array equals the initial capacity
-				Object[] newArray = new Object[originalArray.length * 2]; // create a newItems array that equals old
+				Object[] newArray = new Object[originalArray.length * 2]; // create a newItems array that equals old *2
 				System.arraycopy(originalArray, 0, newArray, 0, originalArray.length); // then copy the original array and paste to new array
 				originalArray = newArray;
 			}
