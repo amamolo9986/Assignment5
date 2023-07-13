@@ -1,10 +1,12 @@
 package com.coderscampus.arraylist;
 
+import java.util.Arrays;
+
 public class CustomArrayList<T> implements CustomList<T> {
 
 	private final int initialCapacity = 10;
 	private Object[] originalArray;
-	private Object[] newArray;
+	//private Object[] newArray;
 	private int size;
 
 	// creating our variables
@@ -27,12 +29,9 @@ public class CustomArrayList<T> implements CustomList<T> {
 	@Override
 	public boolean add(T item) {
 			if (size == originalArray.length) { // if the size of the array equals the initial capacity
-				newArray = new Object[originalArray.length * 2]; // create a newItems array that equals old *2
-				System.arraycopy(originalArray, 0, newArray, 0, originalArray.length); // then copy the original array and paste to new array
-				originalArray = newArray;
+				originalArray = Arrays.copyOf(originalArray, originalArray.length * 2); //original the array to be copied, the length of the copy to be returned
 			}
-		originalArray[size] = item; // adding new items
-		size++; // incrementing array size
+		originalArray[size++] = item; // adding new items and incrementing array size
 		return true;
 
 	}
@@ -46,7 +45,7 @@ public class CustomArrayList<T> implements CustomList<T> {
 	@Override
 	public T get(int index) {
 		if (index >= size || index < 0) {
-	        throw new IndexOutOfBoundsException("Index out of bounds: " + size);
+	        throw new IndexOutOfBoundsException("Index out of bounds: " + index);
 	    }
 		
 		return (T) originalArray[index];
